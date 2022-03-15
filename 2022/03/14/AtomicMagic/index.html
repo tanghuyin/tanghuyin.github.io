@@ -20,28 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tanghuyin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Hello">
-<meta property="og:type" content="website">
-<meta property="og:title" content="aboutme">
-<meta property="og:url" content="http://tanghuyin.github.io/aboutme/index.html">
+    <meta name="description" content="Question:I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AtomicInteger Magic">
+<meta property="og:url" content="http://tanghuyin.github.io/2022/03/14/AtomicMagic/index.html">
 <meta property="og:site_name" content="Hu(who)yin Tang">
-<meta property="og:description" content="Hello">
+<meta property="og:description" content="Question:I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-01-26T02:07:52.000Z">
-<meta property="article:modified_time" content="2022-01-26T02:08:34.382Z">
+<meta property="og:image" content="http://tanghuyin.github.io/.io//03/14/AtomicMagic/benchmark.png">
+<meta property="article:published_time" content="2022-03-15T06:20:25.000Z">
+<meta property="article:modified_time" content="2022-03-15T07:31:27.421Z">
 <meta property="article:author" content="Huyin Tang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tanghuyin.github.io/.io//03/14/AtomicMagic/benchmark.png">
 
 
-<link rel="canonical" href="http://tanghuyin.github.io/aboutme/">
+<link rel="canonical" href="http://tanghuyin.github.io/2022/03/14/AtomicMagic/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"http://tanghuyin.github.io/aboutme/index.html","path":"aboutme/index.html","title":"aboutme"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tanghuyin.github.io/2022/03/14/AtomicMagic/","path":"2022/03/14/AtomicMagic/","title":"AtomicInteger Magic"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>aboutme | Hu(who)yin Tang
-</title>
+<title>AtomicInteger Magic | Hu(who)yin Tang</title>
   
 
 
@@ -106,7 +107,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -119,6 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Question"><span class="nav-number">1.</span> <span class="nav-text">Question:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experiment"><span class="nav-number">2.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Environment"><span class="nav-number">2.1.</span> <span class="nav-text">Environment</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Result"><span class="nav-number">2.2.</span> <span class="nav-text">Result</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,36 +162,93 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tanghuyin.github.io/2022/03/14/AtomicMagic/">
 
-    
-    
-    
-    <div class="post-block" lang="en"><header class="post-header">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Huyin Tang">
+    </span>
 
-<h1 class="post-title" itemprop="name headline">aboutme
-</h1>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hu(who)yin Tang">
+      <meta itemprop="description" content="Hello">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AtomicInteger Magic | Hu(who)yin Tang">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AtomicInteger Magic
+        </h1>
 
-<div class="post-meta-container">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-14 23:20:25" itemprop="dateCreated datePublished" datetime="2022-03-14T23:20:25-07:00">2022-03-14</time>
+    </span>
+
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have huge performance issue. I used to know that things like <strong>synchronize</strong> and <strong>CopyOnWriteList</strong> will have huge performance issue since one have a heavy lock and another one are always copying when inserting elements. I didn’t believe that it will cause huge performance issue, so I decided to do an experiment.</p>
+<h4 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h4><ul>
+<li><h5 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h5></li>
+<li><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><p><img src="/.io//03/14/AtomicMagic/benchmark.png" alt="alt"></p>
+</li>
+<li></li>
+</ul>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/14/What-is-fail-fast/" rel="prev" title="What is fail-fast?">
+                  <i class="fa fa-chevron-left"></i> What is fail-fast?
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
