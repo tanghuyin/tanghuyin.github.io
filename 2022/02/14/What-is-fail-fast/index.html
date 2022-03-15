@@ -22,13 +22,13 @@
 
     <meta name="description" content="Question:Last week, when I was writing the school project, I met a problem when I want to visit an array concurrently. The IDE told me that there is a concurrent modification exception in my code. Thi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="What is fail-fast?">
+<meta property="og:title" content="What is fail-fast in Java?">
 <meta property="og:url" content="https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/index.html">
 <meta property="og:site_name" content="Hu(who)yin Tang">
 <meta property="og:description" content="Question:Last week, when I was writing the school project, I met a problem when I want to visit an array concurrently. The IDE told me that there is a concurrent modification exception in my code. Thi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-15T04:03:32.000Z">
-<meta property="article:modified_time" content="2022-03-15T06:17:14.741Z">
+<meta property="article:modified_time" content="2022-03-15T09:23:14.028Z">
 <meta property="article:author" content="Huyin Tang">
 <meta name="twitter:card" content="summary">
 
@@ -37,10 +37,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/","path":"2022/02/14/What-is-fail-fast/","title":"What is fail-fast?"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/","path":"2022/02/14/What-is-fail-fast/","title":"What is fail-fast in Java?"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>What is fail-fast? | Hu(who)yin Tang</title>
+<title>What is fail-fast in Java? | Hu(who)yin Tang</title>
   
 
 
@@ -124,6 +124,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huyin Tang"
+      src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">Huyin Tang</p>
   <div class="site-description" itemprop="description">Hello</div>
 </div>
@@ -131,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,7 +176,7 @@
     <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Huyin Tang">
     </span>
 
@@ -184,12 +186,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="What is fail-fast? | Hu(who)yin Tang">
+      <meta itemprop="name" content="What is fail-fast in Java? | Hu(who)yin Tang">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          What is fail-fast?
+          What is fail-fast in Java?
         </h1>
 
         <div class="post-meta-container">
@@ -214,6 +216,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>Last week, when I was writing the school project, I met a problem when I want to visit an array concurrently. The IDE told me that there is a concurrent modification exception in my code. This remind me of the same exception when I was grinding Leetcode before. Then I did a research about this exception and its root cause - fail-fast in java.</p>
+<span id="more"></span>
 <h4 id="Concept"><a href="#Concept" class="headerlink" title="Concept:"></a>Concept:</h4><p><strong>Fail-fast</strong> is an mechanism in Java Collection to detect failure. This mechanism will throw a Concurrent Modification Exception if the code do modification to a Collection object while iterating. It will easily happen under concurrent code without appropriate lock, while it can also happen in single thread mode.</p>
 <h4 id="Detailed-Explanation"><a href="#Detailed-Explanation" class="headerlink" title="Detailed Explanation:"></a>Detailed Explanation:</h4><p>Let’s look at the source code of ArrayList:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cursor;       <span class="comment">// index of next element to return</span></span><br><span class="line">    <span class="keyword">int</span> lastRet = -<span class="number">1</span>; <span class="comment">// index of last element returned; -1 if no such</span></span><br><span class="line">    <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cursor != size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">int</span> i = cursor;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">        Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        cursor = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> (E) elementData[lastRet = i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">        checkForComodification();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">            cursor = lastRet;</span><br><span class="line">            lastRet = -<span class="number">1</span>;</span><br><span class="line">            expectedModCount = modCount;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -259,8 +262,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/03/14/AtomicMagic/" rel="next" title="AtomicInteger Magic">
-                  AtomicInteger Magic <i class="fa fa-chevron-right"></i>
+                <a href="/2022/03/01/AtomicMagic/" rel="next" title="Magic of AtomicInteger">
+                  Magic of AtomicInteger <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

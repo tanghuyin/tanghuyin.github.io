@@ -121,6 +121,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Huyin Tang"
+      src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">Huyin Tang</p>
   <div class="site-description" itemprop="description">Hello</div>
 </div>
@@ -128,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -167,10 +169,10 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/03/14/AtomicMagic/">
+    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/03/15/hackathon/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Huyin Tang">
     </span>
 
@@ -185,7 +187,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/14/AtomicMagic/" class="post-title-link" itemprop="url">AtomicInteger Magic</a>
+          <a href="/2022/03/15/hackathon/" class="post-title-link" itemprop="url">First hackthon in US.. And Win!</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,7 +198,84 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-03-14 23:20:25" itemprop="dateCreated datePublished" datetime="2022-03-14T23:20:25-07:00">2022-03-14</time>
+      <time title="Created: 2022-03-15 02:23:57" itemprop="dateCreated datePublished" datetime="2022-03-15T02:23:57-07:00">2022-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>I joined a hackthon by myself and winned <strong>$$</strong>!</p>
+<h4 id="Inspiration"><a href="#Inspiration" class="headerlink" title="Inspiration"></a>Inspiration</h4><p>There are applications like citizen to report dangerous cases around us. But the process to update a case needs too many steps when facing an emergency situation. This application can submit a case as soon as possible with only one click of type. It will automatically send your location to the database and notify people nearby and the police.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/15/hackathon/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/03/01/AtomicMagic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Huyin Tang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hu(who)yin Tang">
+      <meta itemprop="description" content="Hello">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hu(who)yin Tang">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/01/AtomicMagic/" class="post-title-link" itemprop="url">Magic of AtomicInteger</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-01 23:20:25" itemprop="dateCreated datePublished" datetime="2022-03-01T23:20:25-08:00">2022-03-01</time>
     </span>
 
   
@@ -210,22 +289,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have huge performance issue. I used to know that things like <strong>synchronize</strong> and <strong>CopyOnWriteList</strong> will have huge performance issue since one have a heavy lock and another one are always copying when inserting elements. I didn’t believe that it will cause huge performance issue, so I decided to do an experiment.</p>
-<h4 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h4><ul>
-<li><h5 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h5><p>The environment is on my computer, jdk 16 and 11th Intel Core CPU</p>
-<p>The testing framework is openjdk.jmh</p>
-<p>There are two pom dependencies</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-generator-annprocess&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="Experiment-Setting"><a href="#Experiment-Setting" class="headerlink" title="Experiment Setting"></a>Experiment Setting</h5><p>To ensure the justice, will have 10 rounds of the warmup to ensure things like JIT is effective.</p>
-<p>Also to ensure the justice, will run each test 10 times to get the final result, in each round, 10 threads will try to increase one integer concurrently.</p>
-</li>
-<li><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><p><img src="/images/benchmark.png" alt="alt"></p>
-<p>Speed: synchronized &gt; lock &gt; AtomicInteger &gt;&gt; single thread add</p>
-<p>As a result, AtomicInteger will have a large impact on the performance, the reason why it is still as fast as the single thread is because add is too fast for nowadays CPU, it will only cause several ms difference.</p>
-</li>
-<li><h5 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h5><p>This variable is used in a while loop in a thread. A good way to avoid abusing thread-safe variables (global variables) is to put an additional variable in each thread and add them after the while loop. This problem can be neglected since it is not that slow, but certainly not the best <strong>practice</strong>.</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/01/AtomicMagic/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -254,7 +325,7 @@
     <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Huyin Tang">
     </span>
 
@@ -269,7 +340,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/14/What-is-fail-fast/" class="post-title-link" itemprop="url">What is fail-fast?</a>
+          <a href="/2022/02/14/What-is-fail-fast/" class="post-title-link" itemprop="url">What is fail-fast in Java?</a>
         </h2>
 
         <div class="post-meta-container">
@@ -294,34 +365,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>Last week, when I was writing the school project, I met a problem when I want to visit an array concurrently. The IDE told me that there is a concurrent modification exception in my code. This remind me of the same exception when I was grinding Leetcode before. Then I did a research about this exception and its root cause - fail-fast in java.</p>
-<h4 id="Concept"><a href="#Concept" class="headerlink" title="Concept:"></a>Concept:</h4><p><strong>Fail-fast</strong> is an mechanism in Java Collection to detect failure. This mechanism will throw a Concurrent Modification Exception if the code do modification to a Collection object while iterating. It will easily happen under concurrent code without appropriate lock, while it can also happen in single thread mode.</p>
-<h4 id="Detailed-Explanation"><a href="#Detailed-Explanation" class="headerlink" title="Detailed Explanation:"></a>Detailed Explanation:</h4><p>Let’s look at the source code of ArrayList:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cursor;       <span class="comment">// index of next element to return</span></span><br><span class="line">    <span class="keyword">int</span> lastRet = -<span class="number">1</span>; <span class="comment">// index of last element returned; -1 if no such</span></span><br><span class="line">    <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cursor != size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">int</span> i = cursor;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">        Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        cursor = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> (E) elementData[lastRet = i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">        checkForComodification();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">            cursor = lastRet;</span><br><span class="line">            lastRet = -<span class="number">1</span>;</span><br><span class="line">            expectedModCount = modCount;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>We can see the <strong>ConcurrentModificationException</strong> in the checkForComodification method. </p>
-<p>An intuition comes to my mind that the difference of modCound and expectedModCount is the cause of the problem. So what are these two variables.</p>
-<ul>
-<li>modCount: initiate when the iterator is created. change the collection object will change modCount</li>
-<li>expectedModCount: same as modCount when the iterator is created</li>
-</ul>
-<p>Pay attention to the code <strong>changes</strong> the modCount</p>
-<ol>
-<li><p>Remove (Will change modCount)</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fastRemove</span><span class="params">(<span class="keyword">int</span> paramInt)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.modCount += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="keyword">this</span>.size - paramInt - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">      System.arraycopy(<span class="keyword">this</span>.elementData, paramInt + <span class="number">1</span>, <span class="keyword">this</span>.elementData, paramInt, i);</span><br><span class="line">    <span class="keyword">this</span>.elementData[(--<span class="keyword">this</span>.size)] = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Add (Will change modCount)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>); </span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Set (Will Not change modCount)</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>In my opinion, this is a very <strong>tricky</strong> bug and may not be found at the first glance! There is a part of code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;4&quot;</span>);</span><br><span class="line">Iterator&lt;String&gt; iter = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">    String tmp = iter.next();</span><br><span class="line">    System.out.println(tmp);</span><br><span class="line">    <span class="keyword">if</span> (tmp.equals(<span class="string">&quot;3&quot;</span>)) &#123;</span><br><span class="line">        list.remove(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>This code will run seamlessly. Which if I add one more element, like “5” in to the list, the exception will be thrown. This is because this problem just avoid the bug accidentally, since it will break the while loop because iter do not has the next element after the remove. We should use iterator to do the removal.</p>
-<h4 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><strong>Conclusion</strong></h4><ul>
-<li>Do not do remove/add in the foreach loop, use iterator to do the remove</li>
-<li>If code is concurrent, add a lock to it</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/14/What-is-fail-fast/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -350,7 +401,7 @@
     <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2021/08/13/First-Day-In-USA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Huyin Tang">
     </span>
 
