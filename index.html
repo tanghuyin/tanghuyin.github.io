@@ -303,22 +303,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have huge performance issue. I used to know that things like <strong>synchronize</strong> and <strong>CopyOnWriteList</strong> will have huge performance issue since one have a heavy lock and another one are always copying when inserting elements. I didn’t believe that it will cause huge performance issue, so I decided to do an experiment.</p>
-<h4 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h4><ul>
-<li><h5 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h5><p>The environment is on my computer, jdk 16 and 11th Intel Core CPU</p>
-<p>The testing framework is openjdk.jmh</p>
-<p>There are two pom dependencies</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-generator-annprocess&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="Experiment-Setting"><a href="#Experiment-Setting" class="headerlink" title="Experiment Setting"></a>Experiment Setting</h5><p>To ensure the justice, will have 10 rounds of the warmup to ensure things like JIT is effective.</p>
-<p>Also to ensure the justice, will run each test 10 times to get the final result, in each round, 10 threads will try to increase one integer concurrently.</p>
-</li>
-<li><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><p><img src="/images/benchmark.png" alt="alt"></p>
-<p>Speed: synchronized &gt; lock &gt; AtomicInteger &gt;&gt; single thread add</p>
-<p>As a result, AtomicInteger will have a large impact on the performance, the reason why it is still as fast as the single thread is because add is too fast for nowadays CPU, it will only cause several ms difference.</p>
-</li>
-<li><h5 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h5><p>This variable is used in a while loop in a thread. A good way to avoid abusing thread-safe variables (global variables) is to put an additional variable in each thread and add them after the while loop. This problem can be neglected since it is not that slow, but certainly not the best <strong>practice</strong>.</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/14/AtomicMagic/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
