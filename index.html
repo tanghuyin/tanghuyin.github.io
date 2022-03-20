@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -161,6 +161,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/03/14/AtomicMagic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Huyin Tang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hu(who)yin Tang">
+      <meta itemprop="description" content="Hello! 
+ How are you?">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hu(who)yin Tang">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/14/AtomicMagic/" class="post-title-link" itemprop="url">AtomicInteger Magic</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-14 23:20:25" itemprop="dateCreated datePublished" datetime="2022-03-14T23:20:25-07:00">2022-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have huge performance issue. I used to know that things like <strong>synchronize</strong> and <strong>CopyOnWriteList</strong> will have huge performance issue since one have a heavy lock and another one are always copying when inserting elements. I didn’t believe that it will cause huge performance issue, so I decided to do an experiment.</p>
+<h4 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h4><ul>
+<li><h5 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h5><p>The environment is on my computer, jdk 16 and 11th Intel Core CPU</p>
+<p>The testing framework is openjdk.jmh</p>
+<p>There are two pom dependencies</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.openjdk.jmh&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jmh-generator-annprocess&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">1.33</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="Experiment-Setting"><a href="#Experiment-Setting" class="headerlink" title="Experiment Setting"></a>Experiment Setting</h5><p>To ensure the justice, will have 10 rounds of the warmup to ensure things like JIT is effective.</p>
+<p>Also to ensure the justice, will run each test 10 times to get the final result, in each round, 10 threads will try to increase one integer concurrently.</p>
+</li>
+<li><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><p><img src="/images/benchmark.png" alt="alt"></p>
+<p>Speed: synchronized &gt; lock &gt; AtomicInteger &gt;&gt; single thread add</p>
+<p>As a result, AtomicInteger will have a large impact on the performance, the reason why it is still as fast as the single thread is because add is too fast for nowadays CPU, it will only cause several ms difference.</p>
+</li>
+<li><h5 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h5><p>This variable is used in a while loop in a thread. A good way to avoid abusing thread-safe variables (global variables) is to put an additional variable in each thread and add them after the while loop. This problem can be neglected since it is not that slow, but certainly not the best <strong>practice</strong>.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -248,83 +333,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/03/01/AtomicMagic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Huyin Tang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hu(who)yin Tang">
-      <meta itemprop="description" content="Hello! 
- How are you?">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Hu(who)yin Tang">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/01/AtomicMagic/" class="post-title-link" itemprop="url">Magic of AtomicInteger</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-03-01 23:20:25" itemprop="dateCreated datePublished" datetime="2022-03-01T23:20:25-08:00">2022-03-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>I was doing a homework of distributed system this semester. In order to have a thread-safe global counter, I use a concurrent package called AtomicInteger. While the TA told me this will have huge performance issue. I used to know that things like <strong>synchronize</strong> and <strong>CopyOnWriteList</strong> will have huge performance issue since one have a heavy lock and another one are always copying when inserting elements. I didn’t believe that it will cause huge performance issue, so I decided to do an experiment.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/01/AtomicMagic/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/02/14/What-is-fail-fast/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,6 +385,93 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2021/10/29/programming-pearl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Huyin Tang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hu(who)yin Tang">
+      <meta itemprop="description" content="Hello! 
+ How are you?">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hu(who)yin Tang">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/29/programming-pearl/" class="post-title-link" itemprop="url">programming pearl(To be continued)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-10-29 14:48:40" itemprop="dateCreated datePublished" datetime="2021-10-29T14:48:40-07:00">2021-10-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Record some typical problems I met in this book, write the solution based on my knowledge and resource on the internet</p>
+<p>Q: How to sort 10M US phone numbers with ~1MB memory? If a duplicate number exists, then throw an error.</p>
+<p>A1: </p>
+<ul>
+<li>Use integer to store the phone numbers, since one integer will need 4 bytes to store which means can store 0.25M phone numbers in the memory. First to read number between 0-0.25M to the memory, then 0.25M to 0.5M to the memory…</li>
+</ul>
+<p>A2:</p>
+<ul>
+<li>Use a Bitmap, 1.25MB bit array can show whether a number exists, then just traverse the bitmap</li>
+</ul>
+<p>Follow up:</p>
+<ul>
+<li>If the memory need to be exactly below 1MB, How to implement it?<br>A:</li>
+<li>Two Pass<br>Follow up:<br>Store all the free number starts with 800, 877, 888 and more, how to sort them in a 1MB space? How to judge if a free number is used before?</li>
+<li>Use a hashmap, key is the first three digit of the number, value is a bitmap(smaller since it only needs to store the number left)</li>
+</ul>
+<p>Q: Give a set with n integer, and a integer t and integer k, how to quickly know whether there is a subset with k integer, and the sum of the integer are less then t?</p>
+<p>A: First method is to sort the set array, O(nlogn), The second method is using Quick-Select, O(n)</p>
+
       
     </div>
 
