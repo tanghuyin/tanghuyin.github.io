@@ -20,17 +20,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tanghuyin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Data Structure Simple Dynamic String Type 5, 8…  LinkedList  Dictionary  zSet SkipList  intset  ziplist   More Data Structure and its usageString List Hash Set zset How to design a server">
+    <meta name="description" content="Data Structure Simple Dynamic String  1234#define SDS_TYPE_5  0                            #define SDS_TYPE_8  1#define SDS_TYPE_16 2#define SDS_TYPE_32 3#define SDS_TYPE_64 4  len of string &lt; 512M">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Advanced Redis Data Structure(On going)">
 <meta property="og:url" content="https://tanghuyin.github.io/2022/03/20/redis-advanced/index.html">
 <meta property="og:site_name" content="Hu(who)yin Tang">
-<meta property="og:description" content="Data Structure Simple Dynamic String Type 5, 8…  LinkedList  Dictionary  zSet SkipList  intset  ziplist   More Data Structure and its usageString List Hash Set zset How to design a server">
+<meta property="og:description" content="Data Structure Simple Dynamic String  1234#define SDS_TYPE_5  0                            #define SDS_TYPE_8  1#define SDS_TYPE_16 2#define SDS_TYPE_32 3#define SDS_TYPE_64 4  len of string &lt; 512M">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tanghuyin.github.io/images/sds-1.png">
+<meta property="og:image" content="https://tanghuyin.github.io/images/sl-1.png">
 <meta property="article:published_time" content="2022-03-20T08:50:02.000Z">
-<meta property="article:modified_time" content="2022-03-20T08:55:40.081Z">
+<meta property="article:modified_time" content="2022-04-10T09:08:35.174Z">
 <meta property="article:author" content="Huyin Tang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tanghuyin.github.io/images/sds-1.png">
 
 
 <link rel="canonical" href="https://tanghuyin.github.io/2022/03/20/redis-advanced/">
@@ -219,13 +222,55 @@
     <div class="post-body" itemprop="articleBody">
         <h4 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h4><ul>
 <li><p>Simple Dynamic String</p>
-<p>Type 5, 8…</p>
+<p><img src="/images/sds-1.png" alt="alt"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SDS_TYPE_5  0                            #<span class="meta-keyword">define</span> SDS_TYPE_8  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SDS_TYPE_16 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SDS_TYPE_32 3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SDS_TYPE_64 4</span></span><br></pre></td></tr></table></figure>
+
+<p>len of string &lt; 512M</p>
+<p>Advantages</p>
+<ol>
+<li><p>It cost constant time to get the length of the string. The SDS has a field to keep the length of the string, so that the complexity to get the length is O(1).</p>
+</li>
+<li><p>Avoid the buffer overflow. The space of the string will be allocated automatically, similar to Java.</p>
+</li>
+<li><p>Decrease the number of times to re-allocate the memory of the string. <strong>More</strong> Space, <strong>Less</strong> Time, this is a popular trade off to save the time, SDS use space more than enough to avoid allocate new space for every change to the string. Similar to the idea of ArrayList in Java, but it will not decrease the size automatically(<strong>inert</strong> space), but can be done by hand. If the type is the same, do <strong>realloc</strong>, if the type is not the same, do <strong>malloc</strong></p>
+<span id="more"></span></li>
+<li><p>binary safe, can store text, images, audio and video</p>
+</li>
+<li><p>end with \0, have some compatibility with CString</p>
+</li>
+</ol>
+<p>Usage</p>
+<ol>
+<li>Cache</li>
+<li>Counter, counter for LIKE, video played numbers</li>
+<li>Limiter, redis distributed limiter</li>
+</ol>
 </li>
 <li><p>LinkedList</p>
+<p>Basic Doubly LinkedList</p>
+</li>
+<li><p>ArrayList</p>
+<p>Data Structure: QuickList(Doubly LinkedList) and QuickListNode(ZipList(array) store the data)</p>
+<p>QuickList <strong>combine</strong> the advantages of array and linkedlist</p>
 </li>
 <li><p>Dictionary</p>
+<p>Data Structure: dict and two dictht(hash table), two hashtables are used for rehash, the size of the hash table is power of 2.</p>
+<p>Hash</p>
+<ul>
+<li><p>algorithm: default siphash</p>
+<p>get <strong>value</strong>: hash = dict-&gt;type-&gt;hashFunction(key);</p>
+<p>get <strong>index</strong>: index = hash &amp; dict-&gt;ht[x].sizemask</p>
 </li>
-<li><p>zSet SkipList</p>
+<li><p>conflict solve: <strong>OPEN Hashing</strong>, insert at beginning</p>
+</li>
+<li><p>resize larger: when exceed load factor</p>
+</li>
+<li><p>resize shorter: when occupy &lt; 10%, triggered by a cron job</p>
+</li>
+</ul>
+</li>
+<li><p>SkipList zSet</p>
+<p><img src="/images/sl-1.png" alt="alt"></p>
 </li>
 <li><p>intset</p>
 </li>
