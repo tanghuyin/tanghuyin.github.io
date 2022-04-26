@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tanghuyin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is another worl">
+    <meta name="description" content="IntroductionLambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lambda calculus vs turing machine">
 <meta property="og:url" content="https://tanghuyin.github.io/2022/04/24/lambda-calculus-and-turing-machine/index.html">
 <meta property="og:site_name" content="Hu(who)yin Tang">
-<meta property="og:description" content="Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is another worl">
+<meta property="og:description" content="IntroductionLambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-25T05:53:10.000Z">
-<meta property="article:modified_time" content="2022-04-26T10:54:17.827Z">
+<meta property="article:modified_time" content="2022-04-26T11:03:22.425Z">
 <meta property="article:author" content="Huyin Tang">
 <meta name="twitter:card" content="summary">
 
@@ -105,7 +105,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -118,6 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-functions"><span class="nav-number">2.</span> <span class="nav-text">Basic functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boolean-A-little-further"><span class="nav-number">3.</span> <span class="nav-text">Boolean? A little further</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,14 +217,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1=2 world, numbers and symbols construct our whole understanding of the world. But, there is another world made up of functions(<strong>only</strong> functions.) The variables can be function, the return can be function and number can also be functions. In this article, I would like to introduce it a little bit based on my understanding.</p>
+        <h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1=2 world, numbers and symbols construct our whole understanding of the world. But, there is another world made up of functions(<strong>only</strong> functions.) The variables can be function, the return can be function and number can also be functions. In this article, I would like to introduce it a little bit based on my understanding.</p>
 <p>First of all, forget all numbers and symbols, there is no 0, 1, 2… and no + - * /. We do not have them</p>
 <p>What we have? <strong>Functions</strong>, <strong>variables</strong>, <strong>(Applications)parentheses</strong></p>
 <span id="more"></span>
 
+
+
 <p>Then let’s start</p>
-<ul>
-<li><p>The basic function</p>
+<h4 id="Basic-functions"><a href="#Basic-functions" class="headerlink" title="Basic functions"></a>Basic functions</h4><ul>
+<li><p>return variable it self</p>
 <p><strong>λx.x</strong></p>
 <p>λ: Function Signifier</p>
 <p>x before dot: variable</p>
@@ -305,7 +308,7 @@
 <td>Swap variables</td>
 </tr>
 </tbody></table>
-<p>Now we are going to do boolean, again there is no boolean concept in lambda, but in order to help understanding .</p>
+<h4 id="Boolean-A-little-further"><a href="#Boolean-A-little-further" class="headerlink" title="Boolean? A little further"></a>Boolean? A little further</h4><p>Again there is no True or False/boolean in lambda, but in order to help understanding, it will start from the familiar part.</p>
 <p>let T = K, F = KI/K(I)/C(K)</p>
 <p>T(1)(2) will be 1, since return the first variable</p>
 <p>F(1)(2) will be 1, since return the second variable</p>
