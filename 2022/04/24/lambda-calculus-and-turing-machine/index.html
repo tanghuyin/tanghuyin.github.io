@@ -20,27 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tanghuyin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Record some typical problems I met in this book, write the solution based on my knowledge and resource on the internet Q: How to sort 10M US phone numbers with ~1MB memory? If a duplicate number exist">
+    <meta name="description" content="Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is another worl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="programming pearl(To be continued)">
-<meta property="og:url" content="https://tanghuyin.github.io/2021/10/29/programming-pearl/index.html">
+<meta property="og:title" content="lambda calculus vs turing machine">
+<meta property="og:url" content="https://tanghuyin.github.io/2022/04/24/lambda-calculus-and-turing-machine/index.html">
 <meta property="og:site_name" content="Hu(who)yin Tang">
-<meta property="og:description" content="Record some typical problems I met in this book, write the solution based on my knowledge and resource on the internet Q: How to sort 10M US phone numbers with ~1MB memory? If a duplicate number exist">
+<meta property="og:description" content="Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1&#x3D;2 world, numbers and symbols construct our whole understanding of the world. But, there is another worl">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-29T21:48:40.000Z">
-<meta property="article:modified_time" content="2022-03-20T08:49:14.970Z">
+<meta property="article:published_time" content="2022-04-25T05:53:10.000Z">
+<meta property="article:modified_time" content="2022-04-26T10:51:49.023Z">
 <meta property="article:author" content="Huyin Tang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://tanghuyin.github.io/2021/10/29/programming-pearl/">
+<link rel="canonical" href="https://tanghuyin.github.io/2022/04/24/lambda-calculus-and-turing-machine/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://tanghuyin.github.io/2021/10/29/programming-pearl/","path":"2021/10/29/programming-pearl/","title":"programming pearl(To be continued)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://tanghuyin.github.io/2022/04/24/lambda-calculus-and-turing-machine/","path":"2022/04/24/lambda-calculus-and-turing-machine/","title":"lambda calculus vs turing machine"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>programming pearl(To be continued) | Hu(who)yin Tang</title>
+<title>lambda calculus vs turing machine | Hu(who)yin Tang</title>
   
 
 
@@ -173,7 +173,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2021/10/29/programming-pearl/">
+    <link itemprop="mainEntityOfPage" href="https://tanghuyin.github.io/2022/04/24/lambda-calculus-and-turing-machine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -187,12 +187,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="programming pearl(To be continued) | Hu(who)yin Tang">
+      <meta itemprop="name" content="lambda calculus vs turing machine | Hu(who)yin Tang">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          programming pearl(To be continued)
+          lambda calculus vs turing machine
         </h1>
 
         <div class="post-meta-container">
@@ -203,7 +203,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-10-29 14:48:40" itemprop="dateCreated datePublished" datetime="2021-10-29T14:48:40-07:00">2021-10-29</time>
+      <time title="Created: 2022-04-24 22:53:10" itemprop="dateCreated datePublished" datetime="2022-04-24T22:53:10-07:00">2022-04-24</time>
     </span>
 
   
@@ -216,24 +216,112 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Record some typical problems I met in this book, write the solution based on my knowledge and resource on the internet</p>
-<p>Q: How to sort 10M US phone numbers with ~1MB memory? If a duplicate number exists, then throw an error.</p>
-<p>A1: </p>
+        <p>Lambda calculus is a completely different idea compared with turing maching. We grow up in a 1+1=2 world, numbers and symbols construct our whole understanding of the world. But, there is another world made up of functions(<strong>only</strong> functions.) The variables can be function, the return can be function and number can also be functions. In this article, I would like to introduce it a little bit based on my understanding.</p>
+<p>First of all, forget all numbers and symbols, there is no 0, 1, 2… and no + - * /. We do not have them</p>
+<p>What we have? <strong>Functions</strong>, <strong>variables</strong>, <strong>(Applications)parentheses</strong></p>
+<span id="more"></span>
+
+<p>Then let’s start</p>
 <ul>
-<li>Use integer to store the phone numbers, since one integer will need 4 bytes to store which means can store 0.25M phone numbers in the memory. First to read number between 0-0.25M to the memory, then 0.25M to 0.5M to the memory…</li>
+<li><p>The basic function</p>
+<p><strong>λx.x</strong></p>
+<p>λ: Function Signifier</p>
+<p>x before dot: variable</p>
+<p>x after dot: function body</p>
+<p>As a whole, <strong>Lambda Abstraction</strong></p>
+<p>In <strong>Math</strong> World: f(x) = x</p>
+<p>In <strong>Javascript</strong> World: var I = (x) =&gt; x</p>
+<p>Now we got <strong>I</strong> as a function to return the variable it self</p>
+</li>
+<li><p>function call it self</p>
+<p><strong>λf.ff</strong></p>
+<p>In Math World: f() = f(f)</p>
+<p>In Javascript World: var M = f =&gt; f(f)</p>
+</li>
+<li><p>True and False</p>
+<p>Again, we do not have true or false in our lambda world, just use true and false to help understanding.</p>
+<p>3 == 3 equals to True, but here is not going to define 3 == 3, is going to define True it self</p>
+<p>In programming language, there are many if language like:</p>
+<p>if (x &gt; 1) {</p>
+<p>p1</p>
+<p>} else {</p>
+<p>p2</p>
+<p>}</p>
+<p>when x &gt; 1, will execute p1, when x &lt;= 1, will execute p2, which means True is to execute p1 and False is to execute p2, there is no concept of True, only to return the function will be execute.</p>
+<p>So for True, In <strong>Math</strong> world: f(a, b) = a</p>
+<p>On the other hand, f(a, b) = b</p>
+<p> <strong>λab.a</strong> = True, λ = False</p>
+<p>In Javascript World: </p>
+<p>var K = (a) =&gt; (b) =&gt; a;</p>
+<p>var KI = (a) =&gt; (b) =&gt; b;</p>
+<p>While, KI is not needed, we can use K(I)(a)(b), because K(I)(a) will return I, and I(b) = b</p>
+</li>
+<li><p>Changing sequence of variables</p>
+<p><strong>λfab.fba</strong></p>
+<p>This is very intuitive from the equation.</p>
+<p>In Math World: f(a, b) = f(b, a)</p>
+<p>and In JS: C = f =&gt; (a) =&gt; (b) = f(b)(a)</p>
+<p>This can be connected with False, since swap the variables and this makes return the first after swap equals to return the second before swap.</p>
+</li>
 </ul>
-<p>A2:</p>
-<ul>
-<li>Use a Bitmap, 1.25MB bit array can show whether a number exists, then just traverse the bitmap</li>
-</ul>
-<p>Follow up:</p>
-<ul>
-<li>If the memory need to be exactly below 1MB, How to implement it?<br>A:</li>
-<li>Two Pass<br>Follow up:<br>Store all the free number starts with 800, 877, 888 and more, how to sort them in a 1MB space? How to judge if a free number is used before?</li>
-<li>Use a hashmap, key is the first three digit of the number, value is a bitmap(smaller since it only needs to store the number left)</li>
-</ul>
-<p>Q: Give a set with n integer, and a integer t and integer k, how to quickly know whether there is a subset with k integer, and the sum of the integer are less then t?</p>
-<p>A: First method is to sort the set array, O(nlogn), The second method is using Quick-Select, O(n)</p>
+<p>We defined four basic functions now.</p>
+<table>
+<thead>
+<tr>
+<th>Lambda Calculus</th>
+<th>Javascript</th>
+<th>Math</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>λx.x</td>
+<td>I = (x) =&gt; x</td>
+<td>f(x) = x</td>
+<td>return variable</td>
+</tr>
+<tr>
+<td>λf.ff</td>
+<td>M = f =&gt; f(f)</td>
+<td>f() = f(f)</td>
+<td>self as parameter</td>
+</tr>
+<tr>
+<td>λab.a</td>
+<td>K = (a) =&gt; (b) =&gt; a</td>
+<td>f(a, b) = a</td>
+<td>Execute first(T)</td>
+</tr>
+<tr>
+<td>λab.b</td>
+<td>KI = (a) =&gt; (b) =&gt; b/K(I)/C(K)</td>
+<td>f(a, b) = b</td>
+<td>Execute second(F)</td>
+</tr>
+<tr>
+<td>λfab.fba</td>
+<td>C = f =&gt; (a) =&gt; (b) = f(b)(a)</td>
+<td>f(a, b) = f(b, a)</td>
+<td>Swap variables</td>
+</tr>
+</tbody></table>
+<p>Now we are going to do boolean, again there is no boolean concept in lambda, but in order to help understanding .</p>
+<p>let T = K, F = KI/K(I)/C(K)</p>
+<p>T(1)(2) will be 1, since return the first variable</p>
+<p>F(1)(2) will be 1, since return the second variable</p>
+<p>As a result, not(T)(1)(2), should return the 2 and not(F)(1)(2) should return the 1</p>
+<p>not(T) = F, not(F) = T, T(F)(T) = F, F(F)(T) = T, so not = (p) =&gt; p(F)(T) in JS</p>
+<p>represented in λp.pFT</p>
+<p>Go one step further, not is swapping the code to return, we can let it go back</p>
+<p>executing the first one(T) =&gt; not executing the first one(not T) == execute the second one(F)</p>
+<p>executing the second one(F) =&gt; not executing the second one(not F) == execute the first one(T), </p>
+<p>if we <strong>swap</strong> the variables, the first one will be the second one, vice versa.</p>
+<p>Look back to the functions, there is a C which will swap the variables, C(T)(a)(b) = F(b)(a), C(F)(a)(b) = T(b)(a)</p>
+<p>C can also be the meaning of not</p>
+<p>combinator: no free variables</p>
+<p>λb.b combinator</p>
+<p>λb.a not a combinator</p>
+<p>λab.a combinator</p>
 
     </div>
 
@@ -247,14 +335,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/08/13/First-Day-In-USA/" rel="prev" title="First day in USA!">
-                  <i class="fa fa-chevron-left"></i> First day in USA!
+                <a href="/2022/03/20/redis-advanced/" rel="prev" title="Advanced Redis Data Structure(On going)">
+                  <i class="fa fa-chevron-left"></i> Advanced Redis Data Structure(On going)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/14/What-is-fail-fast/" rel="next" title="What is fail-fast in Java?">
-                  What is fail-fast in Java? <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
